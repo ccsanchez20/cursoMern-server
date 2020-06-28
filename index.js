@@ -4,6 +4,7 @@ const port = process.env.PORT || 3977;
 const { API_VERSION, IP_SERVER, PORT_DB } = require("./config");
 
 mongoose.set("useFindAndModify", false);
+mongoose.set("useCreateIndex", true);
 
 // Conexión con la base de datos de Mongo
 mongoose.connect(
@@ -11,6 +12,7 @@ mongoose.connect(
   { useNewUrlParser: true, useUnifiedTopology: true },
   (err, res) => {
     if (err) {
+      console.log("Error.");
       throw err;
     } else {
       console.log("Conexión exitosa a la base de datos.");
