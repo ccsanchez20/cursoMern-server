@@ -8,16 +8,10 @@ const { API_VERSION } = require("./config");
 // ...
 
 const userRoutes = require("./routers/user");
+const authRoutes = require("./routers/auth");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
-// Configure Header HTTP
-// ...
-
-// Router Basic
-// ...
-app.use(`/api/${API_VERSION}`, userRoutes);
 
 // Configure Header HTTP
 app.use((req, res, next) => {
@@ -30,5 +24,10 @@ app.use((req, res, next) => {
   res.header("Allow", "GET, POST, OPTIONS, PUT, DELETE");
   next();
 });
+
+// Router Basic
+// ...
+app.use(`/api/${API_VERSION}`, userRoutes);
+app.use(`/api/${API_VERSION}`, authRoutes);
 
 module.exports = app;
